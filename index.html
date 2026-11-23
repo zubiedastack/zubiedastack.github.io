@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zubieda Lamiya · Cybersecurity</title>
+<meta name="theme-color" content="#fdf8f6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #fdf8f6;
+    --white: #ffffff;
+    --pink: #f2c3ca;
+    --pink-soft: #fbe6e7;
+    --rose: #b86f7e;
+    --sage: #d6dab4;
+    --sage-soft: #eef0df;
+    --sage-deep: #6f7f52;
+    --ink: #3d3436;
+    --muted: #7a6e70;
+    --line: #efe3e3;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "DM Sans", system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 17px;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  /* Striped ribbon like the reference photo */
+  .stripes {
+    height: 14px;
+    background: repeating-linear-gradient(90deg,
+      var(--pink-soft) 0 6px, var(--pink) 6px 20px, var(--white) 20px 30px,
+      var(--sage) 30px 50px, var(--pink-soft) 50px 58px, var(--pink) 58px 70px,
+      var(--white) 70px 78px, var(--pink) 78px 90px);
+  }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(253, 248, 246, 0.9);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-family: "Fraunces", serif; font-size: 22px; font-weight: 600; text-decoration: none; color: var(--rose); }
+  .logo span { color: var(--sage-deep); }
+  .links { display: flex; gap: 28px; align-items: center; }
+  .links a { text-decoration: none; font-size: 15px; color: var(--muted); }
+  .links a:hover { color: var(--rose); }
+  .btn {
+    display: inline-block; text-decoration: none; font-weight: 500; font-size: 15px;
+    padding: 10px 20px; border-radius: 999px; transition: transform .15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-pink { background: var(--pink); color: var(--ink) !important; }
+  .btn-outline { border: 1.5px solid var(--sage-deep); color: var(--sage-deep); }
+
+  /* Hero */
+  .hero { padding: 96px 0 80px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.3fr 1fr; gap: 56px; align-items: center; }
+  .hello { font-size: 15px; letter-spacing: .12em; text-transform: uppercase; color: var(--sage-deep); font-weight: 700; margin-bottom: 16px; }
+  h1 { font-family: "Fraunces", serif; font-weight: 400; font-size: clamp(40px, 6vw, 62px); line-height: 1.08; margin-bottom: 22px; }
+  h1 em { color: var(--rose); }
+  .intro { color: var(--muted); max-width: 520px; margin-bottom: 32px; }
+  .cta { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero-card {
+    aspect-ratio: 4 / 5; border-radius: 28px; position: relative; overflow: hidden;
+    background:
+      repeating-linear-gradient(0deg, rgba(242,195,202,.45) 0 26px, transparent 26px 52px),
+      repeating-linear-gradient(90deg, rgba(214,218,180,.6) 0 18px, transparent 18px 52px),
+      var(--white);
+    border: 6px solid var(--white);
+    box-shadow: 0 20px 50px rgba(184, 111, 126, 0.15);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-card .photo-note {
+    background: var(--white); border-radius: 18px; padding: 18px 22px; text-align: center;
+    font-family: "Fraunces", serif; color: var(--rose); font-size: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.05);
+  }
+  .hero-card .photo-note small { display: block; font-family: "DM Sans", sans-serif; color: var(--muted); font-size: 13px; margin-top: 4px; }
+
+  /* Sections */
+  section { padding: 88px 0; }
+  .label { font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--sage-deep); font-weight: 700; margin-bottom: 10px; }
+  .label b { color: var(--rose); }
+  h2 { font-family: "Fraunces", serif; font-weight: 400; font-size: clamp(32px, 4vw, 44px); line-height: 1.15; margin-bottom: 40px; }
+  h2 em { color: var(--rose); }
+  .alt { background: var(--white); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+  /* Project cards */
+  .projects { display: grid; gap: 24px; }
+  .project {
+    background: var(--white); border: 1px solid var(--line); border-radius: 22px; padding: 32px;
+    display: grid; grid-template-columns: 70px 1fr; gap: 20px;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .project:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(184,111,126,.12); }
+  .num { font-family: "Fraunces", serif; font-size: 40px; color: var(--pink); line-height: 1; }
+  .project h3 { font-family: "Fraunces", serif; font-weight: 600; font-size: 24px; margin-bottom: 4px; }
+  .project .sub { color: var(--sage-deep); font-weight: 500; margin-bottom: 14px; font-size: 15px; }
+  .project ul { list-style: none; margin-bottom: 18px; }
+  .project li { padding-left: 22px; position: relative; margin-bottom: 6px; color: var(--muted); }
+  .project li::before { content: "✿"; position: absolute; left: 0; color: var(--pink); font-size: 14px; top: 2px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag { font-size: 13px; padding: 5px 12px; border-radius: 999px; background: var(--sage-soft); color: var(--sage-deep); font-weight: 500; }
+  .tag.p { background: var(--pink-soft); color: var(--rose); }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; }
+  .about-grid p { color: var(--muted); margin-bottom: 16px; }
+  .box { background: var(--pink-soft); border-radius: 22px; padding: 28px; }
+  .box h4 { font-family: "Fraunces", serif; font-weight: 600; font-size: 20px; margin-bottom: 8px; }
+  .box p { color: var(--ink); margin: 0; }
+
+  /* Experience */
+  .job { border-left: 3px solid var(--pink); padding: 4px 0 4px 24px; margin-bottom: 36px; }
+  .job-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+  .job h3 { font-family: "Fraunces", serif; font-weight: 600; font-size: 21px; }
+  .date { font-size: 14px; color: var(--sage-deep); font-weight: 500; }
+  .role { color: var(--rose); font-weight: 500; margin-bottom: 10px; }
+  .job ul { padding-left: 20px; color: var(--muted); }
+  .job li { margin-bottom: 6px; }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .skill { background: var(--white); border: 1px solid var(--line); border-radius: 20px; padding: 24px; }
+  .skill:nth-child(odd) { background: var(--sage-soft); border-color: transparent; }
+  .skill h4 { font-family: "Fraunces", serif; font-weight: 600; font-size: 18px; margin-bottom: 12px; }
+  .skill .tags .tag { background: var(--white); color: var(--ink); }
+  .skill:nth-child(even) .tags .tag { background: var(--pink-soft); }
+
+  /* Hobbies */
+  .hobbies { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+  .hobby {
+    background: var(--white); border-radius: 20px; padding: 26px 16px; text-align: center;
+    border: 1px solid var(--line); transition: transform .2s ease;
+  }
+  .hobby:hover { transform: rotate(-2deg) translateY(-4px); }
+  .hobby .e { font-size: 36px; display: block; margin-bottom: 8px; }
+  .hobby span { font-weight: 500; }
+
+  /* Contact */
+  .contact { text-align: center; }
+  .contact h2 { margin-bottom: 20px; }
+  .contact p { color: var(--muted); max-width: 520px; margin: 0 auto 32px; }
+  .contact .cta { justify-content: center; }
+
+  footer { padding: 28px 0; text-align: center; color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 800px) {
+    .hero .wrap, .about-grid { grid-template-columns: 1fr; }
+    .hero-card { max-width: 340px; }
+    .links a:not(.btn) { display: none; }
+    .project { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stripes"></div>
+<nav>
+  <div class="wrap">
+    <a href="#top" class="logo">Zubieda<span>✿</span></a>
+    <div class="links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact" class="btn btn-pink">Let's connect ↗</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="hello">Hi, I'm Zubieda 🪷</p>
+      <h1>I help keep systems <em>safe</em>, one control at a time.</h1>
+      <p class="intro">I'm a cybersecurity student who loves finding weak spots before attackers do, from access reviews and Splunk investigations to building a vulnerability scanner with my team.</p>
+      <div class="cta">
+        <a href="#work" class="btn btn-pink">Explore my work ↓</a>
+        <a href="#contact" class="btn btn-outline">Connect with me ↗</a>
+      </div>
+    </div>
+    <!-- To add your photo: upload it as photo.jpg and replace this div with:
+         <img src="photo.jpg" alt="Zubieda Lamiya" style="width:100%;border-radius:28px;"> -->
+    <div class="hero-card">
+      <div class="photo-note">Zubieda Lamiya<small>cybersecurity</small></div>
+    </div>
+  </div>
+</header>
+
+<section id="work" class="alt">
+  <div class="wrap">
+    <p class="label"><b>01</b> / Selected work</p>
+    <h2>Projects I'm <em>proud</em> of.</h2>
+    <div class="projects">
+
+      <article class="project">
+        <div class="num">01</div>
+        <div>
+          <h3>🦭 PikaSeal</h3>
+          <p class="sub">Affordable vulnerability scanner · Scrum Master</p>
+          <ul>
+            <li>Built a security scanner for small businesses that can't afford enterprise tools</li>
+            <li>Connected 5 modules into one pipeline: asset discovery, port scanning, vulnerability detection, risk scoring and data storage</li>
+            <li>Led a team of 4 as Scrum Master and built the scanner's notification system</li>
+          </ul>
+          <div class="tags"><span class="tag p">Scrum Master</span><span class="tag">Attack surface</span><span class="tag">Risk scoring</span><span class="tag">GitHub</span></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="num">02</div>
+        <div>
+          <h3>📰 Online News Popularity</h3>
+          <p class="sub">Data mining analysis of what drives social media shares</p>
+          <ul>
+            <li>Cleaned and engineered 39,644 records across 58 attributes with a Python and pandas pipeline</li>
+            <li>Built a multiple linear regression model with 12 predictors, validated on a 70/30 train-test split</li>
+            <li>Found that weekend publishing raised shares by 31% and social media content by 65%</li>
+          </ul>
+          <div class="tags"><span class="tag p">Python</span><span class="tag">pandas</span><span class="tag p">statsmodels</span><span class="tag">Regression</span></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="num">03</div>
+        <div>
+          <h3>🔐 Cybersecurity Labs</h3>
+          <p class="sub">Tech Talent Pipeline Residency</p>
+          <ul>
+            <li>Completed a SOC 2 readiness access review of 30 user accounts across Okta, AWS, GitHub, Jira and Salesforce</li>
+            <li>Investigated a suspicious login in Splunk by correlating 7 Windows Security event IDs</li>
+            <li>Exploited and patched 2 cross-site scripting vulnerabilities and fuzzed a vulnerable server from Kali Linux</li>
+            <li>Built a guardrailed LLM chatbot and red-teamed rival bots with prompt injection</li>
+          </ul>
+          <div class="tags"><span class="tag p">Splunk</span><span class="tag">AWS</span><span class="tag p">Kali Linux</span><span class="tag">OpenSSL</span><span class="tag p">Wireshark</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <p class="label"><b>02</b> / About</p>
+    <h2>The person behind the <em>projects</em>.</h2>
+    <div class="about-grid">
+      <div>
+        <p>I'm studying Computer Information Systems with a cybersecurity concentration and minoring in Political Science. I'm drawn to the side of security where technology meets people: who has access, what could go wrong, and how to prove the controls actually work.</p>
+        <p>Outside of tech, I care for elderly clients as a personal caretaker, which has taught me a lot about patience, trust and handling sensitive information with care.</p>
+      </div>
+      <div class="box">
+        <h4>🎓 Education</h4>
+        <p>Bachelor of Business Administration<br>Computer Information Systems, Cybersecurity concentration<br>Minor in Political Science</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="alt">
+  <div class="wrap">
+    <p class="label"><b>✿</b> / Experience</p>
+    <h2>Where I've <em>worked</em>.</h2>
+
+    <div class="job">
+      <div class="job-top"><h3>NYC Tech Talent Pipeline Residency</h3><span class="date">06/2026 to present</span></div>
+      <p class="role">Cybersecurity Apprentice</p>
+      <ul>
+        <li>Identified terminated, stale, over-privileged and conflicting access during a SOC 2 readiness review, executing 15 ITGC test steps</li>
+        <li>Segmented a business network with VLANs in Cisco Packet Tracer and configured a 2-subnet AWS VPC with a bastion host</li>
+        <li>Secured accounts with MFA and self-service password reset in Microsoft Entra ID; signed and encrypted messages with 2048-bit RSA keys in OpenSSL</li>
+        <li>Developed a GitHub Actions CI pipeline and deployed AWS workloads on S3 and EC2 with scoped access policies</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-top"><h3>Cocoon Caregiver Solutions</h3><span class="date">07/2025 to present</span></div>
+      <p class="role">Personal Caretaker</p>
+      <ul>
+        <li>Assisted elderly clients with daily living, personal care and mobility support</li>
+        <li>Monitored vitals, recorded data and reported concerns to families and care coordinators</li>
+        <li>Coordinated transportation and accompanied clients to appointments and errands</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <p class="label"><b>✿</b> / Skills</p>
+    <h2>What I <em>bring</em>.</h2>
+    <div class="skills">
+      <div class="skill"><h4>IT Audit, GRC and Compliance</h4><div class="tags">
+        <span class="tag">Risk and Control Matrix</span><span class="tag">ITGC testing</span><span class="tag">Control evaluation</span><span class="tag">Audit documentation</span><span class="tag">GDPR</span><span class="tag">HIPAA</span></div></div>
+      <div class="skill"><h4>Network, Cloud and Infrastructure</h4><div class="tags">
+        <span class="tag">Network design</span><span class="tag">Segmentation</span><span class="tag">Defense-in-depth</span><span class="tag">Cisco Packet Tracer</span><span class="tag">Wireshark</span><span class="tag">AWS EC2, S3, VPC</span><span class="tag">VMware</span><span class="tag">Hyper-V</span><span class="tag">VirtualBox</span></div></div>
+      <div class="skill"><h4>Identity, Cryptography and Security Operations</h4><div class="tags">
+        <span class="tag">MFA</span><span class="tag">Privileged access</span><span class="tag">PKI</span><span class="tag">TLS</span><span class="tag">Digital signatures</span><span class="tag">Splunk SIEM</span><span class="tag">Incident response</span><span class="tag">Digital forensics</span><span class="tag">Vulnerability management</span><span class="tag">Okta</span><span class="tag">Entra ID</span></div></div>
+      <div class="skill"><h4>AI, DevOps and Data Governance</h4><div class="tags">
+        <span class="tag">Prompt engineering</span><span class="tag">LLM security (OWASP Top 10)</span><span class="tag">Secure SDLC</span><span class="tag">CI/CD</span><span class="tag">Git and GitHub</span><span class="tag">Data governance</span><span class="tag">Disaster recovery</span><span class="tag">Ethical hacking</span></div></div>
+      <div class="skill"><h4>Languages and Tools</h4><div class="tags">
+        <span class="tag">SQL</span><span class="tag">Python</span><span class="tag">C++</span><span class="tag">pandas</span><span class="tag">Kali Linux</span><span class="tag">OpenSSL</span><span class="tag">John the Ripper</span><span class="tag">Jira</span><span class="tag">Salesforce</span></div></div>
+      <div class="skill"><h4>Professional</h4><div class="tags">
+        <span class="tag">Project management</span><span class="tag">Risk identification</span><span class="tag">Data integrity</span><span class="tag">Confidentiality</span><span class="tag">Handling sensitive information</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="me" class="alt">
+  <div class="wrap">
+    <p class="label"><b>03</b> / A little more me</p>
+    <h2>When I'm <em>offline</em>.</h2>
+    <div class="hobbies">
+      <div class="hobby"><span class="e">📚</span><span>Reading</span></div>
+      <div class="hobby"><span class="e">🧶</span><span>Crocheting</span></div>
+      <div class="hobby"><span class="e">🥾</span><span>Hiking</span></div>
+      <div class="hobby"><span class="e">🍳</span><span>Cooking</span></div>
+      <div class="hobby"><span class="e">🌿</span><span>Walking</span></div>
+      <div class="hobby"><span class="e">🎨</span><span>Drawing</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <p class="label"><b>04</b> / Contact</p>
+    <h2>Let's <em>connect</em>.</h2>
+    <p>I'm looking for cybersecurity internships and always happy to chat about security, projects or a good book.</p>
+    <div class="cta">
+      <a href="mailto:zubiedakl@gmail.com" class="btn btn-pink">Email me ↗</a>
+      <a href="https://www.linkedin.com/in/zubiedal" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+      <a href="https://github.com/zubiedastack" target="_blank" class="btn btn-outline">GitHub ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Zubieda Lamiya · New York, NY · © 2026 · <a href="#top">Back to top ↑</a>
+</footer>
+<div class="stripes"></div>
+
+</body>
+</html>
